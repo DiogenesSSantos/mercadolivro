@@ -9,7 +9,7 @@ class ClienteRepositoryImpl() : ClienteRepository {
 
 
     companion object {
-        private val listCliente: MutableList<Cliente>? = mutableListOf<Cliente>()
+         val listCliente: MutableList<Cliente>? = mutableListOf<Cliente>()
 
     }
 
@@ -27,15 +27,13 @@ class ClienteRepositoryImpl() : ClienteRepository {
 
 
     override fun buscarPorNome(nome: String): Cliente? {
-        val clienteLocalizado = listCliente?.firstOrNull {
-            cliente -> cliente.nome.equals(nome , true) }
-
-        return clienteLocalizado
+        return null
     }
 
     override  fun buscarTodosPorNome(filtro : String): MutableList<Cliente>? {
-        val filter = listCliente?.filter { cliente -> cliente.nome.startsWith(filtro, true) }
-        return filter?.toMutableList()
+        return null
     }
+
+
 
 }

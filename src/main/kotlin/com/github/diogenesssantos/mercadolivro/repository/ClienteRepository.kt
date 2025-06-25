@@ -7,4 +7,7 @@ import org.springframework.stereotype.Controller
 interface ClienteRepository {
     fun buscarPorNome( nome : String) : Cliente?
     fun buscarTodosPorNome (nome : String) : MutableList<Cliente>?
+
+
+
 }
