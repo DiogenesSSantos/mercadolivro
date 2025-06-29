@@ -1,0 +1,5 @@
+CREATE TABLE tb_cliente (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL,
+    idade INT NOT NULL
+);

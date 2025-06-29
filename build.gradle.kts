@@ -9,6 +9,9 @@ plugins {
 	// Spring Boot / Dependency Management
 	id("org.springframework.boot") version "3.2.2"
 	id("io.spring.dependency-management") version "1.1.7"
+
+	id("org.flywaydb.flyway") version "9.22.0"
+
 }
 
 group = "com.github.diogenesssantos"
@@ -34,6 +37,10 @@ dependencies {
 	// JPA / Hibernate / HikariCP
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	runtimeOnly("mysql:mysql-connector-java:8.0.33")
+
+	//FlywayImplementacao
+	implementation("org.flywaydb:flyway-mysql:10.10.0")
+	implementation("org.flywaydb:flyway-core:10.10.0")
 
 
 	// OpenAPI UI (Swagger)
@@ -61,3 +68,5 @@ tasks.withType<KotlinCompile> {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 	}
 }
+
+

@@ -11,6 +11,7 @@ class Cliente(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private val id: Long?,
+
     var nome: String,
     var idade: Int
 ) {
