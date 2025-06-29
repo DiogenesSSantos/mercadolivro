@@ -17,7 +17,7 @@ class AssemblerCliente {
         }
 
         public  fun dtoToCliente ( clienteDTO: ClienteDTO ) : Cliente {
-            return Cliente(clienteDTO.nome , clienteDTO.idade)
+            return Cliente(1, clienteDTO.nome , clienteDTO.idade)
         }
 
     }
