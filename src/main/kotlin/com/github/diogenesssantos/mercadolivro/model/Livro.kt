@@ -13,11 +13,11 @@ class Livro(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private val id: Long?,
 
-    private var nome: String,
+    var nome: String,
 
     @ManyToOne
     @JoinColumn(name = "id_cliente")
-    private var cliente: Cliente,
+    var cliente: Cliente,
 
     ) {
 

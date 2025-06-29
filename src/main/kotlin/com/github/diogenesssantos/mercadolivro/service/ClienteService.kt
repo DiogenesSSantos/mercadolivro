@@ -1,5 +1,6 @@
 package com.github.diogenesssantos.mercadolivro.service
 
+import com.github.diogenesssantos.mercadolivro.exception.ClienteNaoLocalizadoException
 import com.github.diogenesssantos.mercadolivro.infraestructure.AssemblerCliente
 import com.github.diogenesssantos.mercadolivro.model.Cliente
 import com.github.diogenesssantos.mercadolivro.model.dtos.ClienteDTO
@@ -17,6 +18,14 @@ class ClienteService(val repository: ClienteRepository) {
         return ClienteDTO(clientePersistido.nome, cliente.idade)
     }
 
+    fun buscarPorId(id : Long): Cliente {
+        val clienteLocalizado = repository.findById(id)
+            .orElseThrow { ClienteNaoLocalizadoException() }
+
+        return clienteLocalizado
+
+    }
+
 
     fun buscarPorNome(nome: String): Cliente? {
         val clienteLocalizado: MutableList<Cliente> = repository.findAll()
@@ -26,14 +35,15 @@ class ClienteService(val repository: ClienteRepository) {
     }
 
     fun buscarTodosPorFiltro(nome: String): MutableList<Cliente>? {
-        val listaCompleta : MutableList<Cliente>? =  repository.findAll()
+        val listaCompleta: MutableList<Cliente>? = repository.findAll()
 
         nome?.let {
-            return listaCompleta?.filter { cliente -> cliente.nome.startsWith(nome , true) }
+            return listaCompleta?.filter { cliente -> cliente.nome.startsWith(nome, true) }
                     as MutableList<Cliente>?
         }
 
         return listaCompleta
     }
+
 
 }
