@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-@RequestMapping(path = ["/clientes"])
+@RequestMapping(path = ["/cliente"])
 class ClienteController(val clienteService: ClienteService) : ClienteControlerAPIDocumentacao{
 
 
