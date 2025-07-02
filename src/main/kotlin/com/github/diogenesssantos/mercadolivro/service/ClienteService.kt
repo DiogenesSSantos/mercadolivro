@@ -4,12 +4,14 @@ import com.github.diogenesssantos.mercadolivro.exception.ClienteNaoLocalizadoExc
 import com.github.diogenesssantos.mercadolivro.infraestructure.AssemblerCliente
 import com.github.diogenesssantos.mercadolivro.model.Cliente
 import com.github.diogenesssantos.mercadolivro.model.dtos.ClienteDTO
+import com.github.diogenesssantos.mercadolivro.model.dtos.ClienteResponse
 import com.github.diogenesssantos.mercadolivro.repository.ClienteRepository
 import com.github.diogenesssantos.mercadolivro.repository.ClienteRepositoryImpl.Companion.listCliente
+import com.github.diogenesssantos.mercadolivro.repository.LivroRepository
 import org.springframework.stereotype.Service
 
 @Service
-class ClienteService(val repository: ClienteRepository) {
+class ClienteService(val repository: ClienteRepository, val livroRepository : LivroRepository) {
 
 
     fun salvar(cliente: ClienteDTO): ClienteDTO {
@@ -44,6 +46,22 @@ class ClienteService(val repository: ClienteRepository) {
 
         return listaCompleta
     }
+
+
+    fun buscarLivrosDoCliente(idCLiente : Long) : ClienteResponse {
+
+        try {
+            var clienteLocalizado = buscarPorId(idCLiente)
+            val buscarLivrosPorIdCliente = livroRepository.buscarLivrosPorIdCliente(idCLiente)
+            return ClienteResponse(clienteLocalizado.nome , buscarLivrosPorIdCliente)
+
+        } catch (e : ClienteNaoLocalizadoException) {
+            print(e.message)
+            return ClienteResponse()
+        }
+
+    }
+
 
 
 }

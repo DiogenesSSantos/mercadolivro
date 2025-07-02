@@ -6,8 +6,10 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.Table
 
-@Entity(name = "tb_livro")
+@Entity
+@Table(name = "tb_livro")
 class Livro(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,6 +6,7 @@ import com.github.diogenesssantos.mercadolivro.openapi.ClienteControlerAPIDocume
 import com.github.diogenesssantos.mercadolivro.service.ClienteService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -47,5 +48,13 @@ class ClienteController(val clienteService: ClienteService) : ClienteControlerAP
     override fun buscarTodosPorFiltro(@RequestParam("nome") nome: String) : ResponseEntity<Any> {
        return ResponseEntity.ok(clienteService.buscarTodosPorFiltro(nome))
     }
+
+
+    @GetMapping("buscartodoslivrosid/{id}")
+    fun buscarTodosLivrosPorId(@PathVariable("id") idCliente : Long) : ResponseEntity<Any> {
+        val clienteResponse = clienteService.buscarLivrosDoCliente(idCliente)
+        return ResponseEntity.ok().body(clienteResponse)
+    }
+
 
 }
